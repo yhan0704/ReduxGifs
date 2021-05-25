@@ -13,14 +13,12 @@ const loading = () => {
   };
 };
 
-export const fetchingGifs = (saerchedText) => {
+export const fetchingGifs = (saerchedText) => (dispatch) => {
   const URL = `https://api.giphy.com/v1/gifs/search?q=${saerchedText}&api_key=hf8BCWJfRr3et5BKOyfjvGTtNLESl9Ko&rating=g&limit=100`;
-  return (dispatch, getState) => {
-    dispatch(loading());
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => dispatch(fetchedGifs(data)));
-  };
+  dispatch(loading());
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => dispatch(fetchedGifs(data)));
 };
 
 export const searchedGifs = (search) => {
